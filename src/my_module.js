@@ -1,5 +1,26 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable func-names */
+exports.myDateTime = function () {
+  return Date();
+};
 
-const covid19ImpactEstimator = ({
+exports.data = function () {
+  return {
+    region: {
+      name: 'Africa',
+      avgAge: 19.7,
+      avgDailyIncomeInUSD: 5,
+      avgDailyIncomePopulation: 0.71
+    },
+    periodType: 'months',
+    timeToElapse: 58,
+    reportedCases: 674,
+    population: 66622705,
+    totalHospitalBeds: 1380614
+  };
+};
+
+exports.covid19ImpactEstimator = function ({
   region: {
     name: nam,
     avgAge: avg,
@@ -11,7 +32,7 @@ const covid19ImpactEstimator = ({
   reportedCases: rC,
   population: pop,
   totalHospitalBeds: tHB
-}) => {
+}) {
   if (pT === 'days') {
     return {
       data: {
@@ -140,5 +161,5 @@ const covid19ImpactEstimator = ({
   };
 };
 
-// export default covid19ImpactEstimator;
-module.exports = covid19ImpactEstimator;
+const pi = 3.14;
+exports.pi = pi;
