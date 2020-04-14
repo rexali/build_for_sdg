@@ -4,6 +4,7 @@ const path = require('path');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const realEstimator = require('./estimator');
 
 const apiVersion1 = require('./src/api1.js');
 const apiVersion2 = require('./src/api2.js');
@@ -11,7 +12,7 @@ const apiVersion2 = require('./src/api2.js');
 const app = express();
 
 //  set
-
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.resolve(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
@@ -57,7 +58,14 @@ app.post('/', (request, response) => {
     return;
   }
 
-  realResults.push(realEstimator(estimator.data()));
+  realResults.push(realEstimator({
+    population: request.body.population,
+    timeToElapse: request.body.timeToElapse,
+    reportedCases: request.body.reportedCases,
+    totalHospitalBeds: request.body.totalHospitalBeds,
+    periodType: request.body.periodType
+    // published: new Date()
+  }));
 
 
   // Adds a new entry to the list of entries
@@ -79,7 +87,7 @@ app.use((request, response) => {
 });
 
 // create server and listen at port 3000
-http.createServer(app).listen(3000, () => {
+http.createServer(app).listen(app.get('port'), () => {
   // eslint-disable-next-line no-console
-  console.log('Guestbook app started on port 3000.');
+  console.log(`App started on port ${app.get('port')}`);
 });

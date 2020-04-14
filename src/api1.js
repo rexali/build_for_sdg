@@ -39,6 +39,7 @@ api.get('/on-covid-19/xml', (req, res) => {
   if (req.app.locals.realResults[0] != null) {
     res.send(new xbuilder.Builder({ renderOpts: { pretty: false } }).buildObject(req.app.locals.realResults[0]));
   }
+  res.send();
 });
 
 api.get('/on-covid-19/logs', (req, res) => {
@@ -53,6 +54,7 @@ api.get('/on-covid-19/logs', (req, res) => {
     }
     res.send(rt);
   }
+  res.send();
 });
 
 api.use((request, response) => {
