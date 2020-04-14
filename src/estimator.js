@@ -42,7 +42,7 @@ const covid19ImpactEstimator = ({
 
       }, // your best case estimation
       severeImpact: {
-        severeImpact: rC * 50,
+        currentlyInfected: rC * 50,
         infectionsByRequestedTime: rC * 50 * 2 ** 50,
         severeCasesByRequestedTime: (15 / 100) * rC * 50 * 2 ** 50,
         hospitalBedsByRequestedTime: (35 / 100) * tHB,
@@ -74,24 +74,24 @@ const covid19ImpactEstimator = ({
       },
       // the input data you got
       impact: {
-        currentlyInfected: (rC * 10) / 7,
-        infectionsByRequestedTime: (rC * 10 * 2 ** 10) / 7,
-        severeCasesByRequestedTime: ((15 / 100) * rC * 10 * 2 ** 10) / 7,
-        hospitalBedsByRequestedTime: ((35 / 100) * tHB) / 7,
+        currentlyInfected: ((rC * 10) / 7).toFixed(0),
+        infectionsByRequestedTime: ((rC * 10 * 2 ** 10) / 7).toFixed(0),
+        severeCasesByRequestedTime: (((15 / 100) * rC * 10 * 2 ** 10) / 7).toFixed(0),
+        hospitalBedsByRequestedTime: (((35 / 100) * tHB) / 7).toFixed(0),
 
-        casesForICUByRequestedTime: ((5 / 100) * rC * 10 * 2 ** 10) / 7,
-        casesForVentilatorsByRequestedTime: (2 / 100) * rC * 10 * 2 ** 10,
-        dollarsInFlight: (rC * 10 * 2 ** 10 * 0.65) * 1.5 * 30
+        casesForICUByRequestedTime: (((5 / 100) * rC * 10 * 2 ** 10) / 7).toFixed(0),
+        casesForVentilatorsByRequestedTime: ((2 / 100) * rC * 10 * 2 ** 10).toFixed(0),
+        dollarsInFlight: ((rC * 10 * 2 ** 10 * 0.65) * 1.5 * 30).toFixed(0)
 
       }, // your best case estimation
       severeImpact: {
-        severeImpact: (rC * 50) / 7,
-        infectionsByRequestedTime: (rC * 50 * 2 ** 50) / 7,
-        severeCasesByRequestedTime: ((15 / 100) * rC * 50 * 2 ** 50) / 7,
-        hospitalBedsByRequestedTime: ((35 / 100) * tHB) / 7,
-        casesForICUByRequestedTime: ((5 / 100) * rC * 50 * 2 ** 50) / 7,
-        casesForVentilatorsByRequestedTime: ((2 / 100) * rC * 50 * 2 ** 50) / 7,
-        dollarsInFlight: ((rC * 50 * 2 ** 50 * 0.65) * 1.5 * 30) / 7
+        currentlyInfected: ((rC * 50) / 7).toFixed(0),
+        infectionsByRequestedTime: ((rC * 50 * 2 ** 50) / 7).toFixed(0),
+        severeCasesByRequestedTime: (((15 / 100) * rC * 50 * 2 ** 50) / 7).toFixed(0),
+        hospitalBedsByRequestedTime: (((35 / 100) * tHB) / 7).toFixed(0),
+        casesForICUByRequestedTime: (((5 / 100) * rC * 50 * 2 ** 50) / 7).toFixed(0),
+        casesForVentilatorsByRequestedTime: (((2 / 100) * rC * 50 * 2 ** 50) / 7).toFixed(0),
+        dollarsInFlight: (((rC * 50 * 2 ** 50 * 0.65) * 1.5 * 30) / 7).toFixed(0)
 
       }
 
@@ -127,7 +127,7 @@ const covid19ImpactEstimator = ({
 
     }, // your best case estimation
     severeImpact: {
-      severeImpact: (rC * 50) / 30,
+      currentlyInfected: (rC * 50) / 30,
       infectionsByRequestedTime: (rC * 50 * 2 ** 50) / 30,
       severeCasesByRequestedTime: ((15 / 100) * rC * 50 * 2 ** 50) / 30,
       hospitalBedsByRequestedTime: ((35 / 100) * tHB) / 30,

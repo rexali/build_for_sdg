@@ -1,8 +1,8 @@
-
+/* eslint-disable guard-for-in */
+/* eslint-disable max-len */
 const express = require('express');
 const logger = require('morgan');
-// const convert = require('xml-js');
-const toXML = require('jstoxml');
+const xbuilder = require('xml2js');
 const now = require('performance-now');
 
 const api = express.Router();
@@ -10,46 +10,49 @@ const api = express.Router();
 
 api.use(logger('dev'));
 
-// const logs = [];
-// app.locals.logs = logs;
-
 api.get('/on-covid-19', (req, res) => {
   const start = now();
-  res.send(req.app.locals.realResults);
   req.app.locals.logs.push({
-    tim: new Date().getUTCMilliseconds(),
+    tim: Math.round((new Date().getTime()) / 1000),
     pth: `${req.baseUrl}${req.url}`,
     timeTaken: (now() - start).toFixed(2)
   });
+  res.send(req.app.locals.realResults);
 });
 api.get('/on-covid-19/json', (req, res) => {
   const start = now();
-  res.send(req.app.locals.realResults);
   req.app.locals.logs.push({
-    tim: new Date().getUTCMilliseconds(),
+    tim: Math.round((new Date().getTime()) / 1000),
     pth: `${req.baseUrl}${req.url}`,
     timeTaken: (now() - start).toFixed(2)
   });
+  res.send(req.app.locals.realResults);
 });
 api.get('/on-covid-19/xml', (req, res) => {
   const start = now();
-  //   const options = { compact: true, ignoreComment: true, spaces: 4 };
-  const xmlOptions = { header: false, indent: ' ' };
-  const jsObj = req.app.locals.realResults;
-  //   res.send(convert.js2xml(jsObj, options));
-  res.send(toXML(jsObj, xmlOptions));
-
   req.app.locals.logs.push({
-    tim: new Date().getUTCMilliseconds(),
+    tim: Math.round((new Date().getTime()) / 1000),
     pth: `${req.baseUrl}${req.url}`,
     timeTaken: (now() - start).toFixed(2)
   });
+  res.set('Content-Type', 'text/xml');
+  if (req.app.locals.realResults[0] != null) {
+    res.send(new xbuilder.Builder({ renderOpts: { pretty: false } }).buildObject(req.app.locals.realResults[0]));
+  }
 });
 
 api.get('/on-covid-19/logs', (req, res) => {
-// req.app.locals.logs.forEach((lg) => res.send(`${`${lg.tim}   \t\t   ${lg.pth}  \t\t
-// done in ${lg.timeTaken} seconds \n\n `}`));
-  res.redirect('/logs');
+  const arr = req.app.locals.logs;
+  res.set('Content-Type', 'text/plain');
+  if (req.app.locals.logs.length > 0) {
+    let rt = ' ';
+    // eslint-disable-next-line no-restricted-syntax
+    for (let lg = 0; lg < arr.length;) {
+      rt += `${`${arr[lg].tim}\t\t${arr[lg].pth}\t\tdone in ${arr[lg].timeTaken} seconds\n`}`;
+      lg += 1;
+    }
+    res.send(rt);
+  }
 });
 
 api.use((request, response) => {

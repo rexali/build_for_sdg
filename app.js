@@ -15,25 +15,26 @@ const realEstimator = require('./src/estimator');
 
 const app = express();
 //  set
+
 app.set('views', path.resolve(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
 const entries = [];
-const results = [];
 const realResults = [];
 const logs = [];
 
 
 app.locals.entries = entries;
-app.locals.results = results;
 app.locals.realResults = realResults;
 app.locals.logs = logs;
 
+app.use('/public', express.static(path.resolve(__dirname, 'src/public')));
+app.use('/xml', express.static(path.resolve(__dirname, 'src/public/api.xml')));
+
 app.use('/api/v1', apiVersion1);
 app.use('/api/v2', apiVersion2);
-// Populates a variable
-// called req.body if the user is submitting a form.
-// (The extended option is required.)
+// Populates a variablecalled req.body if the user is
+// submitting a form  (The extended option is required.)
 // Requires all of he modules you
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -50,6 +51,7 @@ app.get('/logs', (request, response) => {
   response.render('logs');
 });
 
+
 // If user submits
 // the form with no title or content,responds with a 400 error
 app.post('/', (request, response) => {
@@ -59,7 +61,6 @@ app.post('/', (request, response) => {
     return;
   }
 
-  results.push(estimator.covid19ImpactEstimator(estimator.data()));
   realResults.push(realEstimator(estimator.data()));
 
 

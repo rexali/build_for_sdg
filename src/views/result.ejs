@@ -1,13 +1,25 @@
 <%- include('header') %>
+<h1>Your Entries</h1>
 <div> Population: <%= entries[0].population  %> </div>
 <div>Time to Elapse: <%= entries[0].timeToElapse %></div>
 <div>Reported Casea : <%= entries[0].reportedCases %></div>
 <div> Total Hospital Beds : <%= entries[0].totalHospitalBeds %></div>
 <div> periodType: <%= entries[0].periodType %> </div>
-<div> currentlyInfected: <%= results[0].impact.currentlyInfected %> </div>
-<div> realCurrentlyInfected: <%= realResults[0].impact.currentlyInfected %> </div>
-
-
+<h1>Your Result : Impact</h1>
+<div>currentlyInfected:<%= realResults[0].impact.currentlyInfected %></div>
+<div>infectionsByRequestedTime: <%= realResults[0].impact.infectionsByRequestedTime %> </div>
+<div> severeCasesByRequestedTime <%= realResults[0].impact.severeCasesByRequestedTime %> </div>
+<div>hospitalBedsByRequestedTime <%= realResults[0].impact.hospitalBedsByRequestedTime %> </div>
+<div>casesForICUByRequestedTime <%= realResults[0].impact.casesForICUByRequestedTime %> </div>
+<div> dollarsInFlight: <%= realResults[0].impact.dollarsInFlight %> </div>
+<h1>Your Result : Severe Impact</h1>
+<div> currentlyInfected: <%= realResults[0].severeImpact.currentlyInfected %> </div>
+<div> infectionsByRequestedTime <%= realResults[0].severeImpact.infectionsByRequestedTime %> </div>
+<div>severeCasesByRequestedTime: <%= realResults[0].severeImpact.severeCasesByRequestedTime %> </div>
+<div> hospitalBedsByRequestedTime <%= realResults[0].severeImpact.hospitalBedsByRequestedTime %> </div>
+<div> casesForICUByRequestedTime <%= realResults[0].severeImpact.casesForICUByRequestedTime %> </div>
+<div> casesForVentilatorsByRequestedTime <%= realResults[0].severeImpact.casesForVentilatorsByRequestedTime %></div>
+<div> dollarsInFlight <%= realResults[0].severeImpact.dollarsInFlight %></div>
 
 <%- include('footer') %>
 
