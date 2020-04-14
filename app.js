@@ -4,16 +4,12 @@ const path = require('path');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const estimator = require('./src/my_module');
-// const {data, covid19ImpactEstimator, myDateTime} = require('./src/mymodule');
 
 const apiVersion1 = require('./src/api1.js');
 const apiVersion2 = require('./src/api2.js');
 
-
-const realEstimator = require('./src/estimator');
-
 const app = express();
+
 //  set
 
 app.set('views', path.resolve(__dirname, 'src/views'));

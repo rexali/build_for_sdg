@@ -14,7 +14,7 @@ api.get('/on-covid-19', (req, res) => {
   const start = now();
   req.app.locals.logs.push({
     tim: Math.round((new Date().getTime()) / 1000),
-    pth: `${req.baseUrl}${req.url}`,
+    pth: `${req.url}`,
     timeTaken: (now() - start).toFixed(2)
   });
   res.send(req.app.locals.realResults);
@@ -23,7 +23,7 @@ api.get('/on-covid-19/json', (req, res) => {
   const start = now();
   req.app.locals.logs.push({
     tim: Math.round((new Date().getTime()) / 1000),
-    pth: `${req.baseUrl}${req.url}`,
+    pth: `${req.url}`,
     timeTaken: (now() - start).toFixed(2)
   });
   res.send(req.app.locals.realResults);
@@ -32,7 +32,7 @@ api.get('/on-covid-19/xml', (req, res) => {
   const start = now();
   req.app.locals.logs.push({
     tim: Math.round((new Date().getTime()) / 1000),
-    pth: `${req.baseUrl}${req.url}`,
+    pth: `${req.url}`,
     timeTaken: (now() - start).toFixed(2)
   });
   res.set('Content-Type', 'text/xml');
