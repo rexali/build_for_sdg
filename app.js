@@ -4,7 +4,7 @@ const path = require('path');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const realEstimator = require('./estimator');
+const realEstimator = require('./src/estimator');
 
 const apiVersion1 = require('./src/api1.js');
 const apiVersion2 = require('./src/api2.js');
