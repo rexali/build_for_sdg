@@ -1,0 +1,9 @@
+<%- include ('header') %>
+<% if ( logs.length > 0 ) { %>
+<%  logs.forEach(function(log){ %>
+    <div> <%= log.tim  %> &nbsp; &nbsp; &nbsp; <%= log.pth %> &nbsp;&nbsp;&nbsp; done in <%= log.timeTaken %> seconds </div>
+<% }) %>
+<% } else { %>
+  <div>No Data Found</div>
+<% } %>
+<%- include('footer') %>    
